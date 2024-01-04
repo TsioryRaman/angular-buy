@@ -24,7 +24,15 @@ export class ProductService {
     clicked ? this.getProductById(id).liked++ : this.getProductById(id).liked--;
   }
 
+  addProduct(product: {name:string,description:string,price:number,liked?:number}):void{
+    this.products.push({...product,id:this.generateProductId(),liked:0})
+  }
+
   private getProductById(id: number) {
     return this.products.find((product) => product.id === id);
+  }
+
+  public generateProductId():number{
+    return this.products[this.products.length - 1].id + 1
   }
 }

@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-sm-6">
+        <div *ngIf="productPreview$ | async as product">
+            <div class="card-body">
+                <h5 class="card-title">{{product.id + ' - ' + product.name }}</h5>
+                <p>{{ product.description }}
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus omnis veniam molestias molestiae beatae, excepturi temporibus, porro perferendis, sequi corrupti tenetur aliquam alias. Illum dolorum minus impedit blanditiis accusamus odit?</p>
+        
+                <h2>Price
+                    <strong>{{ product.price }}$</strong>
+                </h2>
+                <span>Liked
+                    {{ product.liked }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <form [formGroup]="productForm" class="gap-4" (submit)="onSubmitForm()">
+            <div class="form-group">
+                <label for="name">Nom du produit</label>
+                <input type="text" name="name" id="name" placeholder="Nom du produit" autocomplete="additional-name" formControlName="name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="descriptiom">Description du produit</label>
+                <textarea type="text" name="descriptiom" id="descriptiom" formControlName="description" placeholder="Description du produit" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="price">Prix du produit</label>
+                <input type="number" name="price" id="price" placeholder="Description du produit" formControlName="price" class="form-control">
+            </div>
+            <button class="btn btn-primary" [disabled]="productForm.invalid">Creer</button>
+        </form>
+    </div>
+</div>
+
