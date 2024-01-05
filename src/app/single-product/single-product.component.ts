@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../models/Product.model';
 import { ProductService } from '../service/product.service';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-single-product',
@@ -10,23 +11,23 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SingleProductComponent implements OnInit {
 
-  product!: Product;
+  product$: Observable<Product>;
   clicked: boolean;
   constructor(private productService: ProductService,private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     const id = +this.route.snapshot.params.id;
-    this.product = this.productService.getSingleProduct(id);
+    this.product$ = this.productService.getSingleProduct(id);
   }
 
   clickedButton(): void {
-    this.clicked = !this.clicked;
-    if (this.clicked) {
-      this.productService.likedOrNot(this.product.id, this.clicked);
-      return;
-    }
+    // this.clicked = !this.clicked;
+    // if (this.clicked) {
+    //   this.productService.likedOrNot(this.product.id, this.clicked);
+    //   return;
+    // }
 
-    this.productService.likedOrNot(this.product.id, this.clicked);
+    // this.productService.likedOrNot(this.product.id, this.clicked);
   }
 
 }

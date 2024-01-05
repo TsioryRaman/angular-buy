@@ -1,10 +1,10 @@
-<div class="card shadow-sm">
-	<div class="card-body">
+<div *ngIf="product$ | async as product; else loading">
+	<div >
 		<h5 class="card-title">{{product.id + ' - ' + product.name }}</h5>
 		<p>{{ product.description }}
 			Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus omnis veniam molestias molestiae beatae, excepturi temporibus, porro perferendis, sequi corrupti tenetur aliquam alias. Illum dolorum minus impedit blanditiis accusamus odit?</p>
 
-		<button class="btn btn-primary col-sm-6" (click)="clickedButton()">
+		<button class="btn btn-primary" (click)="clickedButton()">
 			<span *ngIf="clicked; else elseBlock">Unliked</span>
 			<ng-template #elseBlock>Liked</ng-template>
 		</button>
@@ -15,3 +15,8 @@
 			{{ product.liked }}</span>
 	</div>
 </div>
+<ng-template #loading>
+	<div class="spinner-border" *ngIf="loading" role="status">
+		<span class="sr-only"></span>
+	  </div>
+</ng-template>

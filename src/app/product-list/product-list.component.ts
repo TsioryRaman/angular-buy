@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Product } from '../models/Product.model';
 import { ProductService } from '../service/product.service';
+import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-list',
@@ -8,11 +10,14 @@ import { ProductService } from '../service/product.service';
   styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
-  products: Array<Product>;
+  product$: Observable<Array<Product>>;
 
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.products = this.productService.getAllProducts();
+    this.product$ = this.productService.getAllProducts()
+    this.product$.subscribe({
+      error: _ => console.log("erreur")
+    })
   }
 }

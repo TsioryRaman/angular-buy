@@ -1,17 +1,20 @@
-<a [routerLink]="[product.id]" class="card shadow-sm">
+<div  class="card text-3xl shadow-sm">
 	<div class="card-body">
 		<h5 class="card-title">{{product.id + ' - ' + product.name }}</h5>
 		<p>{{ product.description }}
 			Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus omnis veniam molestias molestiae beatae, excepturi temporibus, porro perferendis, sequi corrupti tenetur aliquam alias. Illum dolorum minus impedit blanditiis accusamus odit?</p>
 
-		<button class="btn btn-primary col-sm-6" (click)="clickedButton()">
+		<button class="btn btn-danger" (click)="clickedButton()">
 			<span *ngIf="clicked; else elseBlock">Unliked</span>
 			<ng-template #elseBlock>Liked</ng-template>
 		</button>
 		<h2>Price
 			<strong [ngClass]="{redded: clicked,greened:!clicked}">{{ product.price }}$</strong>
 		</h2>
-		<span>Liked
-			{{ product.liked }}</span>
+		<p>Liked
+			{{ product.liked }}
+		</p>
+
+	<a [routerLink]="[product.id]">Consulter</a>
 	</div>
-</a>
+</div>

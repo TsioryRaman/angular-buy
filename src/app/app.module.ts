@@ -11,6 +11,8 @@ import { RouterModule } from '@angular/router';
 import { SingleProductComponent } from './single-product/single-product.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewProductComponent } from './new-product/new-product.component';
+import {HttpClientModule} from "@angular/common/http"
+import { httpInterceptorProviders } from './interceptors';
 
 @NgModule({
   declarations: [
@@ -22,8 +24,8 @@ import { NewProductComponent } from './new-product/new-product.component';
     SingleProductComponent,
     NewProductComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule,FormsModule,ReactiveFormsModule],
-  providers: [],
+  imports: [BrowserModule, AppRoutingModule,FormsModule,ReactiveFormsModule,HttpClientModule],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

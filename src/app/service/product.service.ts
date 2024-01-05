@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../models/Product.model';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -12,20 +15,22 @@ export class ProductService {
     new Product(4, 'Converse', 'Une meilleure chaussure converse', 32, 101),
   ];
 
-  getAllProducts(): Product[] {
-    return this.products;
+  constructor(private http:HttpClient){}
+
+  getAllProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>("http://localhost:8080/product")
   }
 
-  getSingleProduct(id:number): Product{
-    return this.getProductById(id);
+  getSingleProduct(id:number): Observable<Product>{
+    return this.http.get<Product>(`http://localhost:8080/product/${id}`);
   }
 
   likedOrNot(id: number, clicked: boolean) {
     clicked ? this.getProductById(id).liked++ : this.getProductById(id).liked--;
   }
 
-  addProduct(product: {name:string,description:string,price:number,liked?:number}):void{
-    this.products.push({...product,id:this.generateProductId(),liked:0})
+  addProduct(product: {name:string,description:string,price:number,liked?:number}): Observable<Product>{
+    return this.http.post<Product>("http://localhost:8080/product",product)
   }
 
   private getProductById(id: number) {
