@@ -13,13 +13,13 @@ export class AppComponent implements OnInit{
   title = 'buy';
 
   ngOnInit(): void {
-    interval(1000).pipe(
-      take(10),
-      map(value => value % 2 === 0 ? "red" : "yellow"),
-      tap((color: 'red' | 'yellow') => console.log(`La lumiere s'allume en %c${color}`, `color: ${this.translateColor(color)}`)),
-      concatMap((color: 'red' | 'yellow') => this.getTrainObservable$(color)),
-      tap(train => console.log(`Train %c${train.color} ${train.trainIndex} arrive !`, `font-weight:bold; color:${this.translateColor(train.color)}` ))
-    ).subscribe()
+    // interval(1000).pipe(
+    //   take(10),
+    //   map(value => value % 2 === 0 ? "red" : "yellow"),
+    //   tap((color: 'red' | 'yellow') => console.log(`La lumiere s'allume en %c${color}`, `color: ${this.translateColor(color)}`)),
+    //   concatMap((color: 'red' | 'yellow') => this.getTrainObservable$(color)),
+    //   tap(train => console.log(`Train %c${train.color} ${train.trainIndex} arrive !`, `font-weight:bold; color:${this.translateColor(train.color)}` ))
+    // ).subscribe()
   }
 
   getTrainObservable$(color: 'red' | 'yellow') {

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { Product } from '../models/Product.model';
+import { Product } from '../../../core/models/Product.model';
 import { map, tap } from 'rxjs/operators';
-import { ProductService } from '../service/product.service';
+import { ProductService } from '../../../core/service/product.service';
 import { Router } from '@angular/router';
 
 @Component({

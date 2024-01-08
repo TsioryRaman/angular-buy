@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Product } from '../models/Product.model';
-import { ProductService } from '../service/product.service';
+import { Product } from '../../../core/models/Product.model';
+import { ProductService } from '../../../core/service/product.service';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-list',
